@@ -1,0 +1,17 @@
+from airflow.decorators import dag, task
+from datetime import datetime
+
+@task
+def say_hello():
+    print("Hello from Sohel's first Airflow DAG!")
+
+@dag(
+    dag_id="sohel_first_dag",
+    start_date=datetime(2025, 8, 13),
+    schedule_interval="@daily",
+    catchup=False
+)
+def my_dag():
+    say_hello()
+
+my_dag()
